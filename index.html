@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSB BINA KARYA - Sekolah Sepak Bola</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hero-bg {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .gallery-item {
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            max-height: 80%;
+            object-fit: contain;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #bbb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">⚽</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">SSB BINA KARYA</h1>
+                        <p class="text-sm text-gray-600">Sekolah Sepak Bola</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#home" class="text-gray-700 hover:text-green-600 font-medium">Beranda</a>
+                    <a href="#pendaftaran" class="text-gray-700 hover:text-green-600 font-medium">Pendaftaran</a>
+                    <a href="#fasilitas" class="text-gray-700 hover:text-green-600 font-medium">Fasilitas</a>
+                    <a href="#galeri" class="text-gray-700 hover:text-green-600 font-medium">Galeri</a>
+                    <a href="#kontak" class="text-gray-700 hover:text-green-600 font-medium">Kontak</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-5xl font-bold mb-6">Selamat Datang di SSB BINA KARYA</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Membentuk karakter dan mengembangkan bakat sepak bola anak-anak dengan pelatihan profesional</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToSection('pendaftaran')" class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
+                    Daftar Sekarang
+                </button>
+                <button onclick="scrollToSection('kontak')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition duration-300">
+                    Hubungi Kami
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Operasional -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center card-hover bg-green-50 p-6 rounded-lg">
+                    <div class="text-4xl mb-4">📅</div>
+                    <h3 class="text-xl font-bold mb-2">Jadwal Latihan</h3>
+                    <p class="text-gray-600">Sabtu & Minggu</p>
+                </div>
+                <div class="text-center card-hover bg-blue-50 p-6 rounded-lg">
+                    <div class="text-4xl mb-4">💰</div>
+                    <h3 class="text-xl font-bold mb-2">Tarif Bulanan</h3>
+                    <p class="text-gray-600">Rp 30.000 (Bisa Dicicil)</p>
+                </div>
+                <div class="text-center card-hover bg-yellow-50 p-6 rounded-lg">
+                    <div class="text-4xl mb-4">👶</div>
+                    <h3 class="text-xl font-bold mb-2">Usia Peserta</h3>
+                    <p class="text-gray-600">U7 - U15 Tahun</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pendaftaran Section -->
+    <section id="pendaftaran" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Pendaftaran</h2>
+                <p class="text-xl text-gray-600">Bergabunglah dengan SSB BINA KARYA dan wujudkan impian sepak bola Anda!</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Form Pendaftaran -->
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Form Pendaftaran</h3>
+                    <form id="registrationForm" class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Nama Lengkap Anak</label>
+                            <input type="text" id="namaAnak" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Masukkan nama lengkap anak" required>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Usia</label>
+                                <select id="usia" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                                    <option value="">Pilih Usia</option>
+                                    <option value="7">7 Tahun (U7)</option>
+                                    <option value="8">8 Tahun (U8)</option>
+                                    <option value="9">9 Tahun (U9)</option>
+                                    <option value="10">10 Tahun (U10)</option>
+                                    <option value="11">11 Tahun (U11)</option>
+                                    <option value="12">12 Tahun (U12)</option>
+                                    <option value="13">13 Tahun (U13)</option>
+                                    <option value="14">14 Tahun (U14)</option>
+                                    <option value="15">15 Tahun (U15)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Jenis Kelamin</label>
+                                <select id="jenisKelamin" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                                    <option value="">Pilih</option>
+                                    <option value="laki-laki">Laki-laki</option>
+                                    <option value="perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Nama Orang Tua/Wali</label>
+                            <input type="text" id="namaOrtu" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Nama orang tua/wali" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">No. WhatsApp</label>
+                            <input type="tel" id="whatsapp" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="08xxxxxxxxxx" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="email@example.com" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Alamat</label>
+                            <textarea id="alamat" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" rows="3" placeholder="Alamat lengkap" required></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Pengalaman Sepak Bola (Opsional)</label>
+                            <textarea id="pengalaman" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" rows="2" placeholder="Ceritakan pengalaman bermain sepak bola (jika ada)"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                            Daftar Sekarang
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Syarat dan Ketentuan -->
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">Syarat Pendaftaran</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                Usia 7-15 tahun (U7 sampai U15)
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                Fotokopi akta kelahiran
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                Pas foto 3x4 (2 lembar)
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                Surat keterangan sehat dari dokter
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                Biaya pendaftaran Rp 20.000
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                Mengisi formulir pendaftaran lengkap
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                Persetujuan orang tua/wali
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4 text-green-800">Biaya & Pembayaran</h3>
+                        <div class="space-y-2 text-gray-700">
+                            <p><strong>Biaya Pendaftaran:</strong> Rp 20.000 (sekali bayar)</p>
+                            <p><strong>Iuran Bulanan:</strong> Rp 30.000/bulan</p>
+                            <p><strong>Sistem Pembayaran:</strong> Bisa dicicil</p>
+                            <p class="text-sm text-green-600 mt-3">*Pembayaran dapat dilakukan secara bertahap sesuai kemampuan keluarga</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4 text-blue-800">Proses Pendaftaran</h3>
+                        <ol class="space-y-2 text-gray-700">
+                            <li><strong>1.</strong> Isi formulir pendaftaran online</li>
+                            <li><strong>2.</strong> Siapkan dokumen persyaratan</li>
+                            <li><strong>3.</strong> Datang ke lokasi untuk verifikasi</li>
+                            <li><strong>4.</strong> Bayar biaya pendaftaran</li>
+                            <li><strong>5.</strong> Mulai latihan sesuai jadwal</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fasilitas Section -->
+    <section id="fasilitas" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Fasilitas SSB</h2>
+                <p class="text-xl text-gray-600">Fasilitas standar untuk mendukung perkembangan pemain muda</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center card-hover bg-gray-50 p-6 rounded-lg">
+                    <div class="text-5xl mb-4">⚽</div>
+                    <h3 class="text-xl font-bold mb-2">Lapangan Standar</h3>
+                    <p class="text-gray-600">Lapangan sepak bola dengan ukuran dan kondisi standar untuk latihan optimal</p>
+                </div>
+                <div class="text-center card-hover bg-gray-50 p-6 rounded-lg">
+                    <div class="text-5xl mb-4">👨‍🏫</div>
+                    <h3 class="text-xl font-bold mb-2">Pelatih Berpengalaman</h3>
+                    <p class="text-gray-600">Pelatih yang berpengalaman dan berlisensi untuk membimbing pemain muda</p>
+                </div>
+                <div class="text-center card-hover bg-gray-50 p-6 rounded-lg">
+                    <div class="text-5xl mb-4">🥅</div>
+                    <h3 class="text-xl font-bold mb-2">Peralatan Latihan</h3>
+                    <p class="text-gray-600">Peralatan latihan lengkap seperti cone, bola, dan gawang standar</p>
+                </div>
+                <div class="text-center card-hover bg-gray-50 p-6 rounded-lg">
+                    <div class="text-5xl mb-4">🏆</div>
+                    <h3 class="text-xl font-bold mb-2">Program Kompetisi</h3>
+                    <p class="text-gray-600">Kesempatan mengikuti turnamen dan kompetisi untuk mengasah kemampuan</p>
+                </div>
+                <div class="text-center card-hover bg-gray-50 p-6 rounded-lg">
+                    <div class="text-5xl mb-4">🚿</div>
+                    <h3 class="text-xl font-bold mb-2">Ruang Ganti</h3>
+                    <p class="text-gray-600">Ruang ganti yang bersih dan nyaman untuk para pemain</p>
+                </div>
+                <div class="text-center card-hover bg-gray-50 p-6 rounded-lg">
+                    <div class="text-5xl mb-4">🩹</div>
+                    <h3 class="text-xl font-bold mb-2">P3K & Keamanan</h3>
+                    <p class="text-gray-600">Fasilitas P3K dan sistem keamanan untuk menjaga keselamatan pemain</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Section -->
+    <section id="galeri" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Galeri Kegiatan</h2>
+                <p class="text-xl text-gray-600">Dokumentasi kegiatan latihan dan kompetisi SSB BINA KARYA</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Image 1 -->
+                <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer" onclick="openModal('https://drive.google.com/uc?export=view&id=1LBhS8lWlThDs9jMD5pzp7zquqHfmRg6R')">
+                    <div class="h-64 bg-gray-200 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://drive.google.com/uc?export=view&id=1LBhS8lWlThDs9jMD5pzp7zquqHfmRg6R" 
+                             alt="Kegiatan SSB BINA KARYA 1" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                             onerror="this.parentElement.innerHTML='<div class=\'text-center text-gray-500\'><div class=\'text-4xl mb-2\'>⚽</div><p>Foto Kegiatan SSB</p></div>'">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-800">Kegiatan Latihan 1</h3>
+                        <p class="text-gray-600 text-sm">Dokumentasi kegiatan SSB BINA KARYA</p>
+                    </div>
+                </div>
+
+                <!-- Image 2 -->
+                <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer" onclick="openModal('https://drive.google.com/uc?export=view&id=1Co0WdfjZNBTAT2R5GRx1TXSAs617UkJh')">
+                    <div class="h-64 bg-gray-200 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://drive.google.com/uc?export=view&id=1Co0WdfjZNBTAT2R5GRx1TXSAs617UkJh" 
+                             alt="Kegiatan SSB BINA KARYA 2" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                             onerror="this.parentElement.innerHTML='<div class=\'text-center text-gray-500\'><div class=\'text-4xl mb-2\'>🏆</div><p>Foto Kompetisi</p></div>'">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-800">Kegiatan Latihan 2</h3>
+                        <p class="text-gray-600 text-sm">Dokumentasi kegiatan SSB BINA KARYA</p>
+                    </div>
+                </div>
+
+                <!-- Image 3 -->
+                <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer" onclick="openModal('https://drive.google.com/uc?export=view&id=1KjXM-J6ROC_0y1ZRYxnTRfcxLUkKELMp')">
+                    <div class="h-64 bg-gray-200 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://drive.google.com/uc?export=view&id=1KjXM-J6ROC_0y1ZRYxnTRfcxLUkKELMp" 
+                             alt="Kegiatan SSB BINA KARYA 3" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                             onerror="this.parentElement.innerHTML='<div class=\'text-center text-gray-500\'><div class=\'text-4xl mb-2\'>👥</div><p>Foto Tim</p></div>'">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-800">Kegiatan Latihan 3</h3>
+                        <p class="text-gray-600 text-sm">Dokumentasi kegiatan SSB BINA KARYA</p>
+                    </div>
+                </div>
+
+                <!-- Additional placeholder cards -->
+                <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="text-4xl mb-2">⚽</div>
+                            <p class="font-semibold">Latihan Teknik Dasar</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-800">Sesi Latihan Rutin</h3>
+                        <p class="text-gray-600 text-sm">Latihan teknik dasar setiap weekend</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="text-4xl mb-2">🏆</div>
+                            <p class="font-semibold">Turnamen Lokal</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-800">Kompetisi Antar SSB</h3>
+                        <p class="text-gray-600 text-sm">Partisipasi dalam turnamen daerah</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="text-4xl mb-2">👥</div>
+                            <p class="font-semibold">Tim Building</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-800">Kegiatan Bersama</h3>
+                        <p class="text-gray-600 text-sm">Membangun kekompakan tim</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for image viewing -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Kontak Section -->
+    <section id="kontak" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
+                <p class="text-xl text-gray-600">Siap membantu Anda dengan informasi lebih lanjut</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-lg shadow-lg border">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Informasi Kontak</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="text-green-600 text-xl">📍</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Alamat</h4>
+                                <p class="text-gray-600">Desa Sawarna Timur</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="text-green-600 text-xl">📱</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">WhatsApp</h4>
+                                <a href="https://wa.me/6283897996792" class="text-green-600 hover:underline">083897996792</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="text-green-600 text-xl">📧</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Email</h4>
+                                <a href="mailto:isalkurniawan118@gmail.com" class="text-green-600 hover:underline">isalkurniawan118@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="text-green-600 text-xl">⏰</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Jam Operasional</h4>
+                                <p class="text-gray-600">Sabtu & Minggu</p>
+                                <p class="text-gray-500 text-sm">Latihan: 07.00 - 11.00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-lg border">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Kirim Pesan</h3>
+                    <form id="contactForm" class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Nama</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Nama Anda" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="email@example.com" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Subjek</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                                <option value="">Pilih Subjek</option>
+                                <option value="pendaftaran">Informasi Pendaftaran</option>
+                                <option value="jadwal">Jadwal Latihan</option>
+                                <option value="biaya">Informasi Biaya</option>
+                                <option value="lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Pesan</label>
+                            <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" rows="4" placeholder="Tulis pesan Anda..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                            Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">⚽</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">SSB BINA KARYA</h3>
+                            <p class="text-gray-400 text-sm">Sekolah Sepak Bola</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">Membentuk karakter dan mengembangkan bakat sepak bola anak-anak dengan pelatihan profesional di Desa Sawarna Timur.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Kontak Cepat</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p>📍 Desa Sawarna Timur</p>
+                        <p>📱 083897996792</p>
+                        <p>📧 isalkurniawan118@gmail.com</p>
+                        <p>⏰ Sabtu & Minggu</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Link Penting</h4>
+                    <div class="space-y-2">
+                        <a href="#pendaftaran" class="block text-gray-400 hover:text-white transition">Pendaftaran</a>
+                        <a href="#fasilitas" class="block text-gray-400 hover:text-white transition">Fasilitas</a>
+                        <a href="#galeri" class="block text-gray-400 hover:text-white transition">Galeri</a>
+                        <a href="https://wa.me/6283897996792" class="block text-gray-400 hover:text-white transition">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 SSB BINA KARYA. Website dibuat oleh Dede Kurniawan (aidifake26@gmail.com)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Modal functions
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Registration form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                namaAnak: document.getElementById('namaAnak').value,
+                usia: document.getElementById('usia').value,
+                jenisKelamin: document.getElementById('jenisKelamin').value,
+                namaOrtu: document.getElementById('namaOrtu').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                email: document.getElementById('email').value,
+                alamat: document.getElementById('alamat').value,
+                pengalaman: document.getElementById('pengalaman').value
+            };
+
+            // Create email content
+            const emailSubject = `Pendaftaran SSB BINA KARYA - ${formData.namaAnak}`;
+            const emailBody = `
+PENDAFTARAN BARU SSB BINA KARYA
+
+Data Anak:
+- Nama: ${formData.namaAnak}
+- Usia: ${formData.usia} tahun
+- Jenis Kelamin: ${formData.jenisKelamin}
+
+Data Orang Tua/Wali:
+- Nama: ${formData.namaOrtu}
+- WhatsApp: ${formData.whatsapp}
+- Email: ${formData.email}
+- Alamat: ${formData.alamat}
+
+Pengalaman Sepak Bola:
+${formData.pengalaman || 'Tidak ada pengalaman sebelumnya'}
+
+Tanggal Pendaftaran: ${new Date().toLocaleDateString('id-ID')}
+
+---
+Pendaftaran melalui website SSB BINA KARYA
+            `;
+
+            // Create mailto link
+            const mailtoLink = `mailto:isalkurniawan118@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Formulir pendaftaran telah disiapkan! Email akan terbuka untuk mengirim data pendaftaran. Kami akan menghubungi Anda segera melalui WhatsApp untuk konfirmasi.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Pesan Anda telah dikirim! Kami akan merespons dalam waktu 24 jam.');
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97cf24a057c4fd25',t:'MTc1NzUwOTU5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
